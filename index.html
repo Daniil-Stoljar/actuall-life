@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happening Right Now</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-o9N1j7kGSt+bQm9C8yomC35Sa7hbnpGq5H0kR0X0B+k="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Community Activity Map</p>
+        <h1>Share what is happening around you</h1>
+        <p class="lede">
+          Drop a pin for anything from a block party to a police road block so
+          neighbors can stay in the loop in real time.
+        </p>
+        <div class="hero__badges">
+          <span class="badge">Live map</span>
+          <span class="badge badge--outline">Community powered</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="map-panel">
+        <div class="panel__header">
+          <div>
+            <h2>Map</h2>
+            <p class="subhead">Click anywhere on the map to start a new pin.</p>
+          </div>
+          <div
+            class="legend"
+            id="legend-filters"
+            aria-label="Filter pins by category"
+          ></div>
+        </div>
+        <div id="map" role="application" aria-label="Live community map"></div>
+        <div class="panel__footer">
+          <p class="subhead">
+            Toggle categories to focus on specific activity. Pins load from your
+            browser storage.
+          </p>
+          <div class="panel__actions">
+            <button type="button" id="locate-me" class="button button--ghost">
+              Use my location
+            </button>
+            <button type="button" id="clear-pins" class="button button--danger">
+              Clear saved pins
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-panel">
+        <div class="panel__header">
+          <h2>Create a pin</h2>
+          <p class="subhead">
+            Click the map to set a location, then share what is happening.
+          </p>
+        </div>
+        <form id="pin-form" class="card">
+          <div class="form-row">
+            <label for="title">Title</label>
+            <input
+              id="title"
+              name="title"
+              type="text"
+              required
+              placeholder="Block party on Oak St"
+            />
+          </div>
+          <div class="form-row">
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+              <option value="block_party">Block party</option>
+              <option value="police">Police road block / safety</option>
+              <option value="traffic">Traffic / transit</option>
+              <option value="community">Community gathering</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="description">Details</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="3"
+              placeholder="Add any extra context, timing, or advice"
+            ></textarea>
+          </div>
+          <div class="form-row grid">
+            <div>
+              <p class="hint">Selected location</p>
+              <p id="location-readout" class="readout">
+                Tap the map to set a spot
+              </p>
+            </div>
+            <button type="submit" class="button">Post pin</button>
+          </div>
+        </form>
+
+        <div class="panel__header stack-gap">
+          <h2>Recent activity</h2>
+          <p class="subhead">
+            Pins are saved locally in your browser so you can keep track.
+          </p>
+        </div>
+        <div id="activity-list" class="stack"></div>
+      </section>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-o9N1j7kGSt+bQm9C8yomC35Sa7hbnpGq5H0kR0X0B+k="
+      crossorigin=""
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>
